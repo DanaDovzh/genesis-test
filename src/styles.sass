@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+html, body
+  height: 100%
+  margin: 0
+
+.blur
+  position: absolute
+  z-index: 10
+  top: 0
+  height: 100%
+  width: 100%
+  background-image: url("~/src/assets/genesis-logo.png")
+  background-color: #cececed6
+  opacity: 0.8
+  display: flex
+  justify-content: center
+  align-items: center
+  background-repeat: no-repeat
+  background-size: contain
+  background-position: center
+.spinner
+  width: 200px
+  position: absolute
+  z-index: 101
+  height: 100%
+
+.reload
+  font-style: italic
+  font-size: 16px
+  font-weight: 600
+  display: flex
+  align-items: center
+  justify-content: center
+  margin-top: 25px
+  & mat-icon
+    margin-left: 10px

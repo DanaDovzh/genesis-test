@@ -1,27 +1,25 @@
-# GenesisTest
+# Genesis Test
+## Front-End School 2.0 / Кейсове завдання
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.10.
+### Start:
 
-## Development server
+1. `npm i`
+2. `npm run start`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+___
 
-## Code scaffolding
+### Структура проекту
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Основна сторінка **courses**  :page_with_curl: : тут відображається список всіх доступних курсів. На кожній карточці зображено один курс і коротка інформація про нього, а саме: 
+    - рейтинг, 
+    - кількість уроків, 
+    - навички, 
+    - а також, при наведені на лампочку можна ознайомитися з описом курсу
 
-## Build
+- При кліку на текст __Open Lesson__ відкривається сторінка де більш детальна інформація про курс: 
+    - рейтинг, 
+    - список уроків, 
+    - опис, 
+    - навички.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+З проєктом можна ознайомитися за [посиланням]().

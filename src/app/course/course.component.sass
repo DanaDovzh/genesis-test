@@ -1,0 +1,43 @@
+.course
+  margin-top: 10px
+  display: flex
+  justify-content: center
+  width: 100%
+  flex-direction: column
+  &-title
+    font-size: 16px
+    font-weight: 700
+    text-align: center
+    display: flex
+    align-items: center
+    & .title
+      display: flex
+      justify-content: center
+      width: 100%
+  &-wrapper
+    display: flex
+    margin-top: 15px
+    & .video
+      width: 550px
+.lessons-list
+  margin-left: 5px
+  & .lesson
+    display: flex
+    margin: 0px
+    margin-bottom: 4px
+  & .lock
+    font-size: 14px
+    margin-left: 5px
+    color: #ee4747
+    height: fit-content
+.info
+  &-item
+    & .point
+      font-weight: 600
+
+::ng-deep
+  snack-bar-container.alert
+    background: #ff8080
+  .mat-progress-spinner circle, .mat-spinner circle
+    stroke: #3e2dbb !important
+    opacity: 1
