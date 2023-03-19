@@ -11,7 +11,6 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { MaterialModule } from './material.module';
 import { NgxStarsModule } from 'ngx-stars';
-import { CustomHttpInterceptor } from './http-interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,9 +27,7 @@ import { CustomHttpInterceptor } from './http-interceptor';
     NgxStarsModule,
     MaterialModule,
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true },
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

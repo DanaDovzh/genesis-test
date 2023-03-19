@@ -19,7 +19,7 @@
           </mat-card-title>
         </mat-card-header>
         <mat-divider></mat-divider>
-        <mat-card-content (mousemove)="playVideo(course.id)" (mouseleave)="stopVideo(course.id)" class="card__content">
+        <mat-card-content (mouseover)="playVideo(course.id)" (mouseleave)="stopVideo(course.id)" class="card__content">
           <video [id]="'video-' + course.id" [poster]="course.previewImageLink + '/cover.webp'" muted>
             <source [src]="course?.meta?.courseVideoPreview?.link" type="application/x-www-form-urlencoded">
             Your browser does not support the video tag.
@@ -28,7 +28,14 @@
         </mat-card-content>
         <div class="card__footer">
           <div class="card__footer--item">
-            <p class="rating">Rating: <i> {{ course.rating }}</i></p>
+            <div class="rating">
+              <div>Rating:</div>     <ngx-stars
+              class="starts"
+              [size]="1"
+              [readonly]="true"
+              [initialStars]="course.rating"
+              customSize="1rem"
+            ></ngx-stars></div>
             <p class="lessosns">Number of lessons: <i>{{ course.lessonsCount }}</i> </p>
           </div>
           <mat-divider></mat-divider>

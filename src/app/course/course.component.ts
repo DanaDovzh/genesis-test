@@ -5,6 +5,7 @@ import { MainService } from 'src/services/main.service';
 import Hls from 'hls.js';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CourseInterface } from 'src/utils/types';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-course',
@@ -12,12 +13,16 @@ import { CourseInterface } from 'src/utils/types';
   styleUrls: ['./course.component.sass'],
 })
 export class CourseComponent implements OnInit {
-  constructor(private route: ActivatedRoute, public service: MainService,  private _snackBar: MatSnackBar) {}
+  constructor(
+    private route: ActivatedRoute,
+    public service: MainService,
+    private _snackBar: MatSnackBar,
+    public dialog: MatDialog
+  ) {}
   public isHideCourse: boolean = true;
   public course: CourseInterface | undefined;
-  
+  linkLesson = '';
   ngOnInit(): void {
-
     this.route.params
       .pipe(mergeMap((data: any) => this.service.getCourse(data.id)))
       .subscribe(
@@ -27,44 +32,24 @@ export class CourseComponent implements OnInit {
         },
         () => {
           this.isHideCourse = false;
-          this.openSnackBar('Something went wrong')
+          this.openSnackBar('Something went wrong');
         }
       );
   }
 
-  openPictureLesson(lesson: any) {
-    console.log(lesson);
-    const videoElement = document.createElement('video');
-    let videoSrc = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
-        const hls = new Hls({});
-        videoElement.src = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
-        hls.loadSource(videoSrc!);
-        hls.attachMedia(videoElement);
-        document.body.appendChild(videoElement);
-        console.log(videoElement.disablePictureInPicture, document.pictureInPictureEnabled);
-        // videoElement.onloadedmetadata = function() {
-          videoElement.addEventListener('loadedmetadata', async () => {
-            console.log(1);
-            // const pip = await videoEle.requestPictureInPicture();
-          })
-          if (document.pictureInPictureElement) {
-            document.exitPictureInPicture();
-          } else if (document.pictureInPictureEnabled) {
-            videoElement.requestPictureInPicture();
-          }
-          // You should be able to request the picture in picture API from here
-          // Request on my dom element
-      // };
 
-
-        // videoElement.requ/estPictureInPicture()
+  convertVideo(link: string) {
+    document.querySelectorAll('video').forEach((video: HTMLVideoElement) => {
+      const hls = new Hls({});
+      hls.loadSource(link);
+      hls.attachMedia(video);
+    });
 
   }
-
   openSnackBar(message: string, isWrong: boolean = true) {
     this._snackBar.open(message, 'Close', {
       duration: 6000,
-      panelClass: isWrong ? 'alert' : 'success'
+      panelClass: isWrong ? 'alert' : 'success',
     });
   }
 }

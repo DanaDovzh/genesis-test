@@ -7,23 +7,23 @@
   </div>
   <div class="course-wrapper">
     <div class="video">
-      <img [src]="course.lessons[0].previewImageLink + '/lesson-' + course.lessons[0].order + '.webp'" alt="Lesson" srcset="">
+      <img [src]="course.lessons[0].previewImageLink + '/lesson-' + course.lessons[0].order + '.webp'" alt="Lesson" >
       <div class="info-item"><span class="point">Lessons:</span>
         <div class="lessons-list">
           <p class="lesson" *ngFor="let item of course.lessons">
-            <span> {{ item.order }}. </span><span (click)="openPictureLesson(item)"> {{ item.title }}</span> <mat-icon class="lock" *ngIf="item.status === 'unlocked'" matTooltip="This lesson is locked" matTooltipPosition="above">lock</mat-icon>
+            <span class="lesson-part"> {{ item.order }}. </span><span class="lesson-part"> {{ item.title }}</span> <mat-icon class="lock" *ngIf="item.status === 'unlocked'" matTooltip="This lesson is locked" matTooltipPosition="above">lock</mat-icon>
           </p>
         </div>
       </div>
     </div>
     <div class="info">
-      <div class="rating info-item"><span class="point">Rating:
-      <!-- <ngx-stars
+      <div class="rating info-item"><span class="point">Rating:</span>
+        <ngx-stars
+        class="starts"
         [readonly]="true"
         [initialStars]="course.rating"
-        customSize="1.25rem"
-      ></ngx-stars> -->
-    </span>{{ course.rating }}
+        customSize="1.2rem"
+      ></ngx-stars>
       </div>
       <p class="description info-item"><span class="point">Description: </span> {{ course.description }}</p>
       <div class="skills info-item"><span class="point">Skills:</span>

@@ -101,6 +101,7 @@ export class CoursesComponent implements OnInit, AfterViewChecked {
 
   stopVideo(id: string) {
     const video = document.querySelector('#video-' + id) as HTMLVideoElement;
+    video.currentTime = 0;
     video.pause();
   }
 

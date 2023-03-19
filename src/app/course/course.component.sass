@@ -19,10 +19,16 @@
   &-wrapper
     display: flex
     margin-top: 15px
+    @media screen and ( max-width: 500px )
+      flex-direction: column
+      padding: 0px 10px
     & .video
       width: 550px
       margin-right: 20px
       margin-left: 10px
+      @media screen and ( max-width: 500px )
+        margin-right: 0px
+        margin-left: 0px
       & img
         width: 100%
         margin-bottom: 20px
@@ -32,6 +38,10 @@
     display: flex
     margin: 0px
     margin-bottom: 4px
+    &-part
+      &:hover
+        text-decoration: underline
+        opacity: 0.8
   & .lock
     font-size: 14px
     margin-left: 5px
@@ -42,6 +52,11 @@
     margin-bottom: 5px
     & .point
       font-weight: 600
+  & .rating
+      display: flex
+      align-content: center
+      & .starts
+        margin-left: 5px
 
 ::ng-deep
   snack-bar-container.alert
