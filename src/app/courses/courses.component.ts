@@ -3,7 +3,7 @@ import {
   Component,
   ElementRef,
   OnInit,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { MainService } from 'src/services/main.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -14,7 +14,7 @@ import { PageEvent } from '@angular/material/paginator';
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
-  styleUrls: ['./courses.component.sass'],
+  styleUrls: ['./courses.component.sass',],
 })
 export class CoursesComponent implements OnInit, AfterViewChecked {
   public courses: CourseInterface[] = [];
@@ -28,8 +28,8 @@ export class CoursesComponent implements OnInit, AfterViewChecked {
 
   constructor(private service: MainService, private _snackBar: MatSnackBar) {}
 
-  @ViewChild('box', { static: false }) box?: ElementRef;
-  @ViewChild('box', { static: false }) set boxResizeTriggerInit(
+  @ViewChild('box', { static: false, }) box?: ElementRef;
+  @ViewChild('box', { static: false, }) set boxResizeTriggerInit(
     value: ElementRef
   ) {
     if (value) {
@@ -42,7 +42,7 @@ export class CoursesComponent implements OnInit, AfterViewChecked {
     this.service.getCourses().subscribe(
       (data: any) => {
         this.courses = data.courses;
-        this.coursesView = [...this.courses].slice(0, this.pageSize);
+        this.coursesView = [...this.courses,].slice(0, this.pageSize);
         this.isHideCourses = false;
         this.onResize(window);
       },
@@ -75,7 +75,7 @@ export class CoursesComponent implements OnInit, AfterViewChecked {
       value.pageIndex === 0
         ? value.pageSize
         : value.pageSize * (value.pageIndex + 1);
-    this.coursesView = [...this.courses].slice(fromCut, toCut);
+    this.coursesView = [...this.courses,].slice(fromCut, toCut);
   }
 
   onBoxResize() {

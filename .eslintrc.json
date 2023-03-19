@@ -20,6 +20,13 @@
       ],
       "plugins": ["unused-imports"],
       "rules": {
+        "comma-dangle": ["error", {
+          "arrays": "always",
+          "objects": "always",
+          "imports": "never",
+          "exports": "never",
+          "functions": "never"
+      }],
         "no-unused-vars": "off",
         "unused-imports/no-unused-imports": "error",
         "@angular-eslint/directive-selector": [

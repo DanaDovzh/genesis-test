@@ -12,16 +12,16 @@ export class MainService {
   getCourses() {
     return this.http.get(`${this.URL}`, {
       headers: new HttpHeaders({
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      })
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      }),
     });
   }
 
   getCourse(courseId: any) {
     return this.http.get(`${this.URL}/${courseId}`, {
       headers: new HttpHeaders({
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      })
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      }),
     })
   }
 }

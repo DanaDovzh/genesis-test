@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
-  styleUrls: ['./course.component.sass'],
+  styleUrls: ['./course.component.sass',],
 })
 export class CourseComponent implements OnInit {
   constructor(
@@ -37,14 +37,12 @@ export class CourseComponent implements OnInit {
       );
   }
 
-
   convertVideo(link: string) {
     document.querySelectorAll('video').forEach((video: HTMLVideoElement) => {
       const hls = new Hls({});
       hls.loadSource(link);
       hls.attachMedia(video);
     });
-
   }
   openSnackBar(message: string, isWrong: boolean = true) {
     this._snackBar.open(message, 'Close', {
