@@ -7,25 +7,29 @@
   </div>
   <div class="course-wrapper">
     <div class="video">
-      <video [poster]="course.lessons[0].previewImageLink + '/' + course.lessons[0].order + '.webp'">
-        <source [src]="course.lessons[0].link" type="">
-      </video>
+      <img [src]="course.lessons[0].previewImageLink + '/lesson-' + course.lessons[0].order + '.webp'" alt="Lesson" srcset="">
+      <div class="info-item"><span class="point">Lessons:</span>
+        <div class="lessons-list">
+          <p class="lesson" *ngFor="let item of course.lessons">
+            <span> {{ item.order }}. </span><span (click)="openPictureLesson(item)"> {{ item.title }}</span> <mat-icon class="lock" *ngIf="item.status === 'unlocked'" matTooltip="This lesson is locked" matTooltipPosition="above">lock</mat-icon>
+          </p>
+        </div>
+      </div>
     </div>
     <div class="info">
-      <div class="rating info-item"><span class="point">Rating: </span> {{ course.rating }}
+      <div class="rating info-item"><span class="point">Rating:
+      <!-- <ngx-stars
+        [readonly]="true"
+        [initialStars]="course.rating"
+        customSize="1.25rem"
+      ></ngx-stars> -->
+    </span>{{ course.rating }}
       </div>
       <p class="description info-item"><span class="point">Description: </span> {{ course.description }}</p>
       <div class="skills info-item"><span class="point">Skills:</span>
         <ul>
           <li *ngFor="let item of course.meta.skills"> {{ item }}</li>
         </ul>
-      </div>
-      <div class="info-item"><span class="point">Lessons:</span>
-        <div class="lessons-list">
-          <p class="lesson" *ngFor="let item of course.lessons">
-            <span> {{ item.order }}. </span><span> {{ item.title }}</span> <mat-icon class="lock" *ngIf="item.status === 'unlocked'" matTooltip="This lesson is locked" matTooltipPosition="above">lock</mat-icon>
-          </p>
-        </div>
       </div>
     </div>
   </div>
@@ -37,3 +41,4 @@
 <div class="blur" *ngIf="isHideCourse">
   <mat-spinner class="spinner" color=""></mat-spinner>
 </div>
+

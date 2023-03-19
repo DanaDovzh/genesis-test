@@ -1,28 +1,30 @@
-<mat-paginator *ngIf="!isHideCourses && courses.length" [length]="courses.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10]"
-  (page)="changesPaginator($event)" aria-label="Select page">
+<mat-paginator *ngIf="!isHideCourses && courses.length" [length]="courses.length" [pageSize]="pageSize"
+  [pageSizeOptions]="[5, 10]" (page)="changesPaginator($event)" aria-label="Select page">
 </mat-paginator>
 <div class="box" *ngIf="!isHideCourses && courses.length">
-  <mat-grid-list [cols]="columns" (window:resize)="onResize($event.target)" [gutterSize]="'10px'" [rowHeight]="rowHeight" width="100%">
+  <mat-grid-list [cols]="columns" (window:resize)="onResize($event.target)" [gutterSize]="'10px'"
+    [rowHeight]="rowHeight" width="100%">
     <mat-grid-tile *ngFor="let course of coursesView">
       <mat-card class="card">
         <mat-card-header>
           <mat-card-title class="card__header">
             <p class="open-btn"><a [routerLink]="['/course', course.id]">Open Course</a></p>
-           <div class="card__header--info">
-            <p class="card__header--title">{{ course.title }}</p>
-            <button class="card__header--btn" mat-button [matTooltip]="course.description" matTooltipPosition="above"
-              aria-label="Button that displays a tooltip in various positions">
-              <img src="../../assets/lamp.png" alt="hint" class="hint">
-            </button>
-           </div>
+            <div class="card__header--info">
+              <p class="card__header--title">{{ course.title }}</p>
+              <button class="card__header--btn" mat-button [matTooltip]="course.description" matTooltipPosition="above"
+                aria-label="Button that displays a tooltip in various positions">
+                <img src="../../assets/lamp.png" alt="hint" class="hint">
+              </button>
+            </div>
           </mat-card-title>
         </mat-card-header>
         <mat-divider></mat-divider>
-        <mat-card-content class="card__content">
-          <video [poster]="course.previewImageLink + '/cover.webp'" controls autoplay muted>
+        <mat-card-content (mousemove)="playVideo(course.id)" (mouseleave)="stopVideo(course.id)" class="card__content">
+          <video [id]="'video-' + course.id" [poster]="course.previewImageLink + '/cover.webp'" muted>
             <source [src]="course?.meta?.courseVideoPreview?.link" type="application/x-www-form-urlencoded">
             Your browser does not support the video tag.
-         </video>
+          </video>
+
         </mat-card-content>
         <div class="card__footer">
           <div class="card__footer--item">
@@ -30,10 +32,15 @@
             <p class="lessosns">Number of lessons: <i>{{ course.lessonsCount }}</i> </p>
           </div>
           <mat-divider></mat-divider>
-          <div class="skills">
-            <p>Skills:</p>
-            <p> {{ course.meta.skills }}</p>
-
+          <div class="skills-block">
+            <p>
+              Skills:
+            </p>
+            <mat-chip-list>
+              <mat-chip *ngFor="let ingredient of course.meta.skills">
+                {{ ingredient }}
+              </mat-chip>
+            </mat-chip-list>
           </div>
         </div>
       </mat-card>

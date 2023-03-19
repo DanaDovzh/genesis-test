@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -10,7 +10,8 @@ import { CoursesComponent } from './courses/courses.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { MaterialModule } from './material.module';
-
+import { NgxStarsModule } from 'ngx-stars';
+import { CustomHttpInterceptor } from './http-interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,9 +25,12 @@ import { MaterialModule } from './material.module';
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NgxStarsModule,
     MaterialModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

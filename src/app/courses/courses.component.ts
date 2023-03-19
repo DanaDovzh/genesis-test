@@ -1,7 +1,5 @@
 import {
-  AfterContentInit,
   AfterViewChecked,
-  AfterViewInit,
   Component,
   ElementRef,
   OnInit,
@@ -10,10 +8,8 @@ import {
 import { MainService } from 'src/services/main.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import Hls from 'hls.js';
-import { MatGridList } from '@angular/material/grid-list';
-import { CourseInterface, PaginatorInterface } from 'src/utils/types';
+import { CourseInterface } from 'src/utils/types';
 import { PageEvent } from '@angular/material/paginator';
-import { isNull } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-courses',
@@ -23,10 +19,11 @@ import { isNull } from '@angular/compiler/src/output/output_ast';
 export class CoursesComponent implements OnInit, AfterViewChecked {
   public courses: CourseInterface[] = [];
   public coursesView: any[] = [];
-  public pageSize: number = 5;
+  public pageSize: number = 10;
   public isHideCourses: boolean = true;
   public columns: number = 2;
-  public rowHeight: string = '400px';
+  public rowHeight: string = '500px';
+  panelOpenState = false;
   count = 0;
 
   constructor(private service: MainService, private _snackBar: MatSnackBar) {}
@@ -62,18 +59,16 @@ export class CoursesComponent implements OnInit, AfterViewChecked {
     } else if (this.count === 0) {
       this.count++;
       document.querySelectorAll('video').forEach((video: HTMLVideoElement) => {
-        let videoSrc =
-          'https://wisey.app/videos/lack-of-motivation-how-to-overcome-it/preview/AppleHLS1/preview.m3u8';
+        const videoSrc = video.querySelector('source')?.src?.toString();
         const hls = new Hls({});
-        hls.loadSource(videoSrc);
+        hls.loadSource(videoSrc!);
         hls.attachMedia(video);
       });
     }
   }
 
   changesPaginator(value: PageEvent) {
-    console.log(value);
-
+    this.count = 0;
     const fromCut =
       value.pageIndex === 0 ? 0 : value.pageSize * value.pageIndex;
     const toCut =
@@ -95,19 +90,26 @@ export class CoursesComponent implements OnInit, AfterViewChecked {
   openSnackBar(message: string, isWrong: boolean = true) {
     this._snackBar.open(message, 'Close', {
       duration: 6000,
-      panelClass: isWrong ? 'alert' : 'success'
+      panelClass: isWrong ? 'alert' : 'success',
     });
+  }
+
+  playVideo(id: string) {
+    const video = document.querySelector('#video-' + id) as HTMLVideoElement;
+    video.play();
+  }
+
+  stopVideo(id: string) {
+    const video = document.querySelector('#video-' + id) as HTMLVideoElement;
+    video.pause();
   }
 
   onResize(data: any) {
     const width = data.innerWidth;
-    if(!width) {
+    if (!width) {
       return;
     }
-    if (width >= 1000) {
-      this.columns = 2;
-      this.rowHeight = '400px';
-    } else if (width > 770) {
+    if (width > 770) {
       this.columns = 2;
     } else if (width <= 770) {
       this.columns = 1;

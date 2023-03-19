@@ -8,6 +8,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgModule } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { MatChipsModule } from '@angular/material/chips';
 @NgModule({
   exports: [
     MatGridListModule,
@@ -19,6 +21,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatSnackBarModule,
     MatDividerModule,
     MatIconModule,
+    MatExpansionModule,
+    MatChipsModule
   ],
 })
 export class MaterialModule {}
