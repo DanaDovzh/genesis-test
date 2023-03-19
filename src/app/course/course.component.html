@@ -22,6 +22,8 @@
         class="starts"
         [readonly]="true"
         [initialStars]="course.rating"
+        matTooltipPosition="above"
+        [matTooltip]="(course.rating).toString()"
         customSize="1.2rem"
       ></ngx-stars>
       </div>
